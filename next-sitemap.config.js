@@ -1,5 +1,16 @@
+const URL = process.env.NEXT_PUBLIC_HOSTNAME
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://example.com",
-  generateRobotsTxt: true, // (optional)
-  // ...other options
+  siteUrl: URL,
+  generateRobotsTxt: true,
+  generateIndexSitemap: true,
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        disallow: ["/404"],
+      },
+      { userAgent: "*", allow: "/" },
+    ],
+    additionalSiteMaps: [`${URL}/sitemap.xml`],
+  },
 }
