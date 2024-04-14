@@ -1,12 +1,13 @@
 import BuiltInFormatsDemo from "../components/BuiltInFormatDemo"
 import SubscribeForm from "../components/SubscribeForm"
 import { createTranslation } from "../i18n/server"
+import { LocaleType } from "../i18n/settings"
 
 // Make the page async cause we need to use await for createTranslation
 const IndexPage = async ({
   params: { locale },
 }: {
-  params: { locale: "en" | "zh-CN" | "sv" }
+  params: { locale:LocaleType }
 }) => {
   // Make sure to use the correct namespace here.
   const { t } = await createTranslation(locale, "home")

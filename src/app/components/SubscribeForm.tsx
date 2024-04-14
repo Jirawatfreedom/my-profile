@@ -1,9 +1,10 @@
 import React from "react"
 import { createTranslation } from "../i18n/server"
+import { LocaleType } from "../i18n/settings"
 
 const SubscribeForm = async ({ locale }: { locale: string }) => {
   const { t } = await createTranslation(
-    locale as "en" | "zh-CN" | "sv",
+    locale as LocaleType,
     "newsletter"
   )
 

@@ -26,6 +26,7 @@ const ChangeLocale = () => {
         <option value="en">🇺🇸 English</option>
         <option value="zh-CN">🇨🇳 中文</option>
         <option value="sv">🇸🇪 Swedish</option>
+        <option value="th">🇹🇭 Thai</option>
       </select>
     </div>
   )
