@@ -1,17 +1,16 @@
 import { createTranslation } from "@/app/i18n/server"
 
-const ContactPage = async ({
+const SkillsPage = async ({
   params: { locale },
 }: {
   params: { locale: any }
 }) => {
-  const { t } = await createTranslation(locale, "contact")
-
+  const { t } = await createTranslation(locale, "skills")
   return (
     <div className="container">
-      <h1>{t("aboutThisPage")}</h1>
+      <h1>{t("title")}</h1>
     </div>
   )
 }
 
-export default ContactPage
+export default SkillsPage

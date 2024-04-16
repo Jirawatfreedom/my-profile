@@ -1,24 +1,25 @@
-import BuiltInFormatsDemo from "../components/BuiltInFormatDemo"
-import SubscribeForm from "../components/SubscribeForm"
+import HeroSection from "../components/HeroSection"
 import { createTranslation } from "../i18n/server"
 import { LocaleType } from "../i18n/settings"
 
-// Make the page async cause we need to use await for createTranslation
 const IndexPage = async ({
   params: { locale },
 }: {
-  params: { locale:LocaleType }
+  params: { locale: LocaleType }
 }) => {
-  // Make sure to use the correct namespace here.
   const { t } = await createTranslation(locale, "home")
-
+  // const notify = () => toast("Wow so easy!")
   return (
-    <div>
-      <h1>{t("greeting")}</h1>
+    <div className="container ">
+      <HeroSection />
+      {/* <button onClick={notify}>Notify!</button> */}
+      {/* <ToastContainer /> */}
+      {/* <Marquee /> */}
+      {/* <h1>{t("greeting")}</h1>
       <hr className="my-4" />
       <BuiltInFormatsDemo />
       <hr className="my-4" />
-      <SubscribeForm locale={locale} />
+      <SubscribeForm locale={locale} /> */}
     </div>
   )
 }

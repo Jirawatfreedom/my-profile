@@ -6,7 +6,13 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["localhost"], // Add other domains if you have external images
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "localhost",
+        pathname: "**",
+      },
+    ],
   },
 }
 

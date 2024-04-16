@@ -5,11 +5,10 @@ const AboutPage = async ({
 }: {
   params: { locale: any }
 }) => {
-  // Make sure to use the correct namespace here.
   const { t } = await createTranslation(locale, "about")
 
   return (
-    <div>
+    <div className="container">
       <h1>{t("aboutThisPage")}</h1>
     </div>
   )

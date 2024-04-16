@@ -10,24 +10,38 @@ const ChangeLocale = () => {
   const router = useRouter()
   const params = useParams()
   const urlSegments = useSelectedLayoutSegments()
-
-  const handleLocaleChange = (event: { target: { value: any } }) => {
-    const newLocale = event.target.value
-
-    // This is used by the Header component which is used in `app/[locale]/layout.tsx` file,
-    // urlSegments will contain the segments after the locale.
-    // We replace the URL with the new locale and the rest of the segments.
+  console.log("urlSegments", urlSegments)
+  console.log("router", router)
+  console.log("params", params.locale)
+  const handleLocaleChange = (newLocale: string) => {
     router.push(`/${newLocale}/${urlSegments.join("/")}`)
   }
 
   return (
-    <div>
-      <select onChange={handleLocaleChange} value={params.locale}>
-        <option value="en">🇺🇸 English</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-        <option value="sv">🇸🇪 Swedish</option>
-        <option value="th">🇹🇭 Thai</option>
-      </select>
+    <div className="flex flex-row justify-between">
+      <button onClick={() => handleLocaleChange("en")}>
+        <span
+          className={`${
+            params.locale === "en"
+              ? "underline decoration-2 text-green-500 font-bold"
+              : ""
+          }`}
+        >
+          EN
+        </span>
+      </button>
+      <div className="text-white px-2">|</div>
+      <button onClick={() => handleLocaleChange("th")}>
+        <span
+          className={`${
+            params.locale === "th"
+              ? "underline decoration-2 text-green-500 font-bold"
+              : ""
+          }`}
+        >
+          TH
+        </span>
+      </button>
     </div>
   )
 }

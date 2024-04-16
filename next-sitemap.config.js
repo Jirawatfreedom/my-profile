@@ -2,7 +2,7 @@ const URL = process.env.NEXT_PUBLIC_HOSTNAME
 module.exports = {
   siteUrl: URL,
   generateRobotsTxt: true,
-  generateIndexSitemap: true,
+  generateIndexSitemap: false,
   robotsTxtOptions: {
     policies: [
       {
