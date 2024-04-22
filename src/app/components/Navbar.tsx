@@ -4,7 +4,6 @@ import Link from "next/link"
 import ChangeLocale from "./ChangeLocale"
 import { LocaleTypes } from "../i18n/settings"
 import { useTranslation } from "../i18n/client"
-import { motion } from "framer-motion"
 import { useState } from "react"
 import Image from "next/image"
 const Navbar = () => {
@@ -72,20 +71,33 @@ const Navbar = () => {
                 {t("skills")}
               </a>
               <a
-                href=""
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-purple-500 transition duration-300"
+                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                  pathName === `/${locale}/education` ||
+                  pathName === "/education"
+                    ? "text-blue-700 border-b-4 border-purple-500"
+                    : "text-gray-500"
+                }`}
+                href={`/${locale}/education`}
               >
                 Education
               </a>
               <a
-                href=""
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-purple-500 transition duration-300"
+                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                  pathName === `/${locale}/blogs` || pathName === "/blogs"
+                    ? "text-blue-700 border-b-4 border-purple-500"
+                    : "text-gray-500"
+                }`}
+                href={`/${locale}/blogs`}
               >
                 Blogs
               </a>
               <a
-                href=""
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-purple-500 transition duration-300"
+                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                  pathName === `/${locale}/projects` || pathName === "/projects"
+                    ? "text-blue-700 border-b-4 border-purple-500"
+                    : "text-gray-500"
+                }`}
+                href={`/${locale}/projects`}
               >
                 Projects
               </a>
@@ -94,22 +106,23 @@ const Navbar = () => {
 
             <div className="md:hidden flex items-center">
               <button className="outline-none menu-button">
-                <svg
-                  className="w-6 h-6 text-gray-500"
-                  x-show="! showMenu"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 00 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="m4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+                <div className={``}>
+                  <svg
+                    className="w-6 h-6 text-gray-500"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 00 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="m4 6h16M4 12h16M4 18h16"></path>
+                  </svg>
+                </div>
               </button>
             </div>
 
-            <div className="hidden mobile-menu">
+            <div className="hidden mobile-menu" data-testid="mobile-menu">
               <ul className="">
                 <li className="active">
                   <a
