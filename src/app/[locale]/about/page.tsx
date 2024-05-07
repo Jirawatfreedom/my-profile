@@ -6,6 +6,9 @@ const AboutPage = async ({
 }: {
   params: { locale: any }
 }) => {
+  if (!locale) {
+    return null
+  }
   const { t } = await createTranslation(locale, "about")
   return (
     <div className="container">

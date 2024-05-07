@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="fixed top-0 w-full bg-gray-400 shadow-lg h-16 md:h-20 lg:h-24 flex flex-row items-center">
+      <nav className="fixed top-0 w-full bg-black shadow-lg h-16 md:h-20 lg:h-24 flex flex-row items-center z-50">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between h-full items-center">
             <div className="flex space-x-7">
@@ -38,74 +38,86 @@ const Navbar = () => {
                 </span>
               </Link>
             </div>
-            <div className="hidden md:flex items-center space-x-1">
-              <a
-                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
-                  pathName === `/${locale}/about` || pathName === "/about"
-                    ? "text-blue-700 border-b-4 border-purple-500"
-                    : "text-gray-500"
-                }`}
-                href={`/${locale}/about`}
-              >
-                {t("about")}
-              </a>
-              <a
-                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
-                  pathName === `/${locale}/experiences` ||
-                  pathName === "/experiences"
-                    ? "text-blue-700 border-b-4 border-purple-500"
-                    : "text-gray-500"
-                }`}
-                href={`/${locale}/experiences`}
-              >
-                {t("experiences")}
-              </a>
-              <a
-                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
-                  pathName === `/${locale}/skills` || pathName === "/skills"
-                    ? "text-blue-700 border-b-4 border-purple-500"
-                    : "text-gray-500"
-                }`}
-                href={`/${locale}/skills`}
-              >
-                {t("skills")}
-              </a>
-              <a
-                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
-                  pathName === `/${locale}/education` ||
-                  pathName === "/education"
-                    ? "text-blue-700 border-b-4 border-purple-500"
-                    : "text-gray-500"
-                }`}
-                href={`/${locale}/education`}
-              >
-                Education
-              </a>
-              <a
-                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
-                  pathName === `/${locale}/blogs` || pathName === "/blogs"
-                    ? "text-blue-700 border-b-4 border-purple-500"
-                    : "text-gray-500"
-                }`}
-                href={`/${locale}/blogs`}
-              >
-                Blogs
-              </a>
-              <a
-                className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
-                  pathName === `/${locale}/projects` || pathName === "/projects"
-                    ? "text-blue-700 border-b-4 border-purple-500"
-                    : "text-gray-500"
-                }`}
-                href={`/${locale}/projects`}
-              >
-                Projects
-              </a>
-              <ChangeLocale />
+            <div className="hidden md:flex items-center space-x-1 w-1/2 ">
+              <div className="flex flex-row justify-between w-full">
+                <div>
+                  <a
+                    className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                      pathName === `/${locale}/about` || pathName === "/about"
+                        ? "text-blue-700 border-b-4 border-purple-500"
+                        : "text-gray-500"
+                    }`}
+                    href={`/${locale}/about`}
+                  >
+                    {t("about")}
+                  </a>
+                  <a
+                    className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                      pathName === `/${locale}/experiences` ||
+                      pathName === "/experiences"
+                        ? "text-blue-700 border-b-4 border-purple-500"
+                        : "text-gray-500"
+                    }`}
+                    href={`/${locale}/experiences`}
+                  >
+                    {t("experiences")}
+                  </a>
+                  <a
+                    className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                      pathName === `/${locale}/skills` || pathName === "/skills"
+                        ? "text-blue-700 border-b-4 border-purple-500"
+                        : "text-gray-500"
+                    }`}
+                    href={`/${locale}/skills`}
+                  >
+                    {t("skills")}
+                  </a>
+                  <a
+                    className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                      pathName === `/${locale}/education` ||
+                      pathName === "/education"
+                        ? "text-blue-700 border-b-4 border-purple-500"
+                        : "text-gray-500"
+                    }`}
+                    href={`/${locale}/education`}
+                  >
+                    Education
+                  </a>
+                  <a
+                    className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                      pathName === `/${locale}/blogs` || pathName === "/blogs"
+                        ? "text-blue-700 border-b-4 border-purple-500"
+                        : "text-gray-500"
+                    }`}
+                    href={`/${locale}/blogs`}
+                  >
+                    Blogs
+                  </a>
+                  <a
+                    className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
+                      pathName === `/${locale}/projects` ||
+                      pathName === "/projects"
+                        ? "text-blue-700 border-b-4 border-purple-500"
+                        : "text-gray-500"
+                    }`}
+                    href={`/${locale}/projects`}
+                  >
+                    Projects
+                  </a>
+                </div>
+                <div>
+                  <ChangeLocale />
+                </div>
+              </div>
+
+              {/* <ChangeLocale /> */}
             </div>
 
             <div className="md:hidden flex items-center">
-              <button className="outline-none menu-button">
+              <button
+                className="outline-none menu-button"
+                data-testid="button-mobile"
+              >
                 <div className={``}>
                   <svg
                     className="w-6 h-6 text-gray-500"

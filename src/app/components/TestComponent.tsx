@@ -16,7 +16,7 @@ const TestComponent = () => {
     })
   }
   return (
-    <div>
+    <div data-testid="test-component">
       <h1>Lets use react-toastify</h1>
       <button onClick={onClick}>Click me!</button>
     </div>
