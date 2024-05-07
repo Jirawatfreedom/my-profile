@@ -19,7 +19,7 @@ const Navbar = () => {
       <nav className="fixed top-0 w-full bg-black shadow-lg h-16 md:h-20 lg:h-24 flex flex-row items-center z-50">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between h-full items-center">
-            <div className="flex space-x-7">
+            <div className="flex space-x-7 w-3/5">
               <Link
                 href={`/${locale}`}
                 className="flex items-center py-4 px-2 space-x-4"
@@ -38,7 +38,7 @@ const Navbar = () => {
                 </span>
               </Link>
             </div>
-            <div className="hidden md:flex items-center space-x-1 w-1/2 ">
+            <div className="hidden md:flex items-center space-x-1 w-full ">
               <div className="flex flex-row justify-between w-full">
                 <div>
                   <a
