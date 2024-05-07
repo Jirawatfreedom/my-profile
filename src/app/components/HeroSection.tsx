@@ -20,7 +20,7 @@ const HeroSection = (props: Props) => {
       <div className="relative left-0 top-0">
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-red-500">xxx</div>
-          <div className="bg-green-500"></div>
+          <div className="bg-orange-500"></div>
         </div>
       </div>
     </section>
