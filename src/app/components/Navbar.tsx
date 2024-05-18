@@ -10,10 +10,13 @@ const Navbar = () => {
   const pathName = usePathname()
   const locale = useParams()?.locale as LocaleTypes
   const { t } = useTranslation(locale, "common")
-  const [isOpen, setIsOpen] = useState(true)
 
-  const toggle = () => setIsOpen(!isOpen)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
+  const toggleMobileMenu = () => {
+    console.log("open")
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
   return (
     <header>
       <nav className="fixed top-0 w-full bg-black shadow-lg h-16 md:h-20 lg:h-24 flex flex-row items-center z-50">
@@ -24,7 +27,7 @@ const Navbar = () => {
                 href={`/${locale}`}
                 className="flex items-center py-4 px-2 space-x-4"
               >
-                <div className="w-[50px] h-[50px] relative">
+                <div className="w-[30px] h-[30px] relative flex items-center justify-center">
                   <Image
                     src="/images/common/logo.png"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -33,7 +36,7 @@ const Navbar = () => {
                     className="absolute w-full min-h-full object-cover object-center"
                   />
                 </div>
-                <span className=" text-[#16f2b3] text-3xl font-bold ">
+                <span className=" text-[#16f2b3] text-3xl font-bold  bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient">
                   {t("jirawat")}
                 </span>
               </Link>
@@ -109,14 +112,13 @@ const Navbar = () => {
                   <ChangeLocale />
                 </div>
               </div>
-
-              {/* <ChangeLocale /> */}
             </div>
 
             <div className="md:hidden flex items-center">
               <button
                 className="outline-none menu-button"
                 data-testid="button-mobile"
+                onClick={toggleMobileMenu}
               >
                 <div className={``}>
                   <svg
@@ -133,43 +135,44 @@ const Navbar = () => {
                 </div>
               </button>
             </div>
-
-            <div className="hidden mobile-menu" data-testid="mobile-menu">
-              <ul className="">
-                <li className="active">
-                  <a
-                    href="nav.html"
-                    className="block text-sm px-2 py-4 text-white bg-purple-500 font-semibold"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#services"
-                    className="block.text-sm.px-2.py-4 hover:bg-purple-500 transition duration-300"
-                  >
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#About"
-                    className="block.text-sm.px-2.py-4 hover:bg-purple-500 transition duration-300"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#Contact Us"
-                    className="block.text-sm.px-2.py-4 hover:bg-purple-500 transition duration-300"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {isMobileMenuOpen && (
+              <div className="hidden mobile-menu" data-testid="mobile-menu">
+                <ul className="">
+                  <li className="active">
+                    <a
+                      href="nav.html"
+                      className="block text-sm px-2 py-4 text-white bg-purple-500 font-semibold"
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#services"
+                      className="block.text-sm.px-2.py-4 hover:bg-purple-500 transition duration-300"
+                    >
+                      Services
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#About"
+                      className="block.text-sm.px-2.py-4 hover:bg-purple-500 transition duration-300"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#Contact Us"
+                      className="block.text-sm.px-2.py-4 hover:bg-purple-500 transition duration-300"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </nav>

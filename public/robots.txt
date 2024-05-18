@@ -5,6 +5,7 @@ Disallow: /404
 # *
 User-agent: *
 Allow: /
+Allow: /api/og/*
 
 # Host
 Host: http://localhost:3000

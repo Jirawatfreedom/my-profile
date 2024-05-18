@@ -16,7 +16,7 @@ const roboto_mono = Roboto_Mono({
   variable: "--font-roboto-mono",
 })
 export const metadata = {
-  title: "Portfolio of Jirawat Maubkhuntod",
+  title: "Jirawat",
   description:
     "This is the portfolio of Jirawat Maubkhuntod. I am a full stack developer and a self taught developer. I love to learn new things and I am always open to collaborating with others. I am a quick learner and I am always looking for new challenges.",
 }
@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
       <body suppressHydrationWarning={true}>
         <ToastContainer
-          position="top-center"
+          position="top-right"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

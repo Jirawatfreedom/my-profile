@@ -10,9 +10,6 @@ const ChangeLocale = () => {
   const router = useRouter()
   const params = useParams()
   const urlSegments = useSelectedLayoutSegments()
-  console.log("urlSegments", urlSegments)
-  console.log("router", router)
-  console.log("params", params.locale)
   const handleLocaleChange = (newLocale: string) => {
     router.push(`/${newLocale}/${urlSegments.join("/")}`)
   }

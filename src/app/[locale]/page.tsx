@@ -10,7 +10,7 @@ const IndexPage = async ({
 }) => {
   const { t } = await createTranslation(locale, "home")
   return (
-    <div className="container ">
+    <div className="container">
       <HeroSection />
       <h1>Home</h1>
       <Link href="/about">About</Link>
