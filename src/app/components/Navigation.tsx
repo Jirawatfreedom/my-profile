@@ -28,17 +28,26 @@ const Navigation = () => {
   const { t } = useTranslation(locale, "common")
   return (
     <header>
-      <Disclosure as="nav" className="">
+      <Disclosure
+        as="nav"
+        className="fixed top-0 z-50 w-full backdrop-blur-3xl bg-transparent"
+      >
         {({ open }) => (
-          <div className="container">
+          <div className="container w-full">
             <div className="">
               <div className="relative flex items-center justify-between h-16 md:h-20 lg:h-24 ">
                 <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
-                  <DisclosureButton className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <DisclosureButton className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-white hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-600">
                     {open ? (
-                      <FaTimes className="block h-6 w-6" aria-hidden="true" />
+                      <FaTimes
+                        className="block h-6 w-6 text-gray-600"
+                        aria-hidden="true"
+                      />
                     ) : (
-                      <FaBars className="block h-6 w-6" aria-hidden="true" />
+                      <FaBars
+                        className="block h-6 w-6 text-gray-600"
+                        aria-hidden="true"
+                      />
                     )}
                   </DisclosureButton>
                 </div>
@@ -69,7 +78,7 @@ const Navigation = () => {
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
                             pathName === `/${locale}/about` ||
                             pathName === "/about"
-                              ? "text-blue-700 border-b-4 border-purple-500"
+                              ? "text-green-500 border-b-4 border-green-500"
                               : "text-gray-500"
                           }`}
                           href={`/${locale}/about`}
@@ -80,7 +89,7 @@ const Navigation = () => {
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
                             pathName === `/${locale}/experiences` ||
                             pathName === "/experiences"
-                              ? "text-blue-700 border-b-4 border-purple-500"
+                              ? "text-green-500 border-b-4 border-green-500"
                               : "text-gray-500"
                           }`}
                           href={`/${locale}/experiences`}
@@ -91,7 +100,7 @@ const Navigation = () => {
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
                             pathName === `/${locale}/skills` ||
                             pathName === "/skills"
-                              ? "text-blue-700 border-b-4 border-purple-500"
+                              ? "text-green-500 border-b-4 border-green-500"
                               : "text-gray-500"
                           }`}
                           href={`/${locale}/skills`}
@@ -102,7 +111,7 @@ const Navigation = () => {
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
                             pathName === `/${locale}/education` ||
                             pathName === "/education"
-                              ? "text-blue-700 border-b-4 border-purple-500"
+                              ? "text-green-500 border-b-4 border-green-500"
                               : "text-gray-500"
                           }`}
                           href={`/${locale}/education`}
@@ -113,7 +122,7 @@ const Navigation = () => {
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
                             pathName === `/${locale}/blogs` ||
                             pathName === "/blogs"
-                              ? "text-blue-700 border-b-4 border-purple-500"
+                              ? "text-green-500 border-b-4 border-green-500"
                               : "text-gray-500"
                           }`}
                           href={`/${locale}/blogs`}
@@ -124,7 +133,7 @@ const Navigation = () => {
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
                             pathName === `/${locale}/projects` ||
                             pathName === "/projects"
-                              ? "text-blue-700 border-b-4 border-purple-500"
+                              ? "text-green-500 border-b-4 border-green-500"
                               : "text-gray-500"
                           }`}
                           href={`/${locale}/projects`}
