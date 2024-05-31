@@ -1,14 +1,10 @@
 "use client"
-import { Fragment } from "react"
 import {
-  Button,
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  Transition,
 } from "@headlessui/react"
-import { FaTimes, FaBars, FaBell } from "react-icons/fa"
+import { FaTimes, FaBars } from "react-icons/fa"
 import Image from "next/image"
 import Link from "next/link"
 import { useParams, usePathname } from "next/navigation"
@@ -116,7 +112,7 @@ const Navigation = () => {
                           }`}
                           href={`/${locale}/education`}
                         >
-                          Education
+                          {t("education")}
                         </a>
                         <a
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
@@ -138,7 +134,7 @@ const Navigation = () => {
                           }`}
                           href={`/${locale}/projects`}
                         >
-                          Projects
+                          {t("projects")}
                         </a>
                       </div>
                       <div>
