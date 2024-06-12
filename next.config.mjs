@@ -6,7 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['tailwindui.com'], // Add this line
+    // domains: ['tailwindui.com'], // Add this line
     remotePatterns: [
       {
         protocol: "https",

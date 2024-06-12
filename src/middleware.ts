@@ -1,8 +1,17 @@
-import {NextResponse, NextRequest} from 'next/server';
-import { fallbackLng, locales } from "./app/i18n/settings";
+import { NextResponse, NextRequest } from "next/server"
+import { fallbackLng, locales } from "./app/i18n/settings"
+// import { getSession, useSession } from "next-auth/react"
 
-export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+export async function middleware(request: NextRequest) {
+  // const session = await getSession({ req: request })
+  // const session = await getSession({ req: request })
+  // const { data: session } = useSession()
+
+  // if (!session) {
+  //   return NextResponse.redirect("/api/auth/signin")
+  // }
+
+  const pathname = request.nextUrl.pathname
 
   if (
     pathname.startsWith(`/${fallbackLng}/`) ||
@@ -12,25 +21,25 @@ export function middleware(request: NextRequest) {
       new URL(
         pathname.replace(
           `/${fallbackLng}`,
-          pathname === `/${fallbackLng}` ? '/' : '',
+          pathname === `/${fallbackLng}` ? "/" : ""
         ),
-        request.url,
-      ),
-    );
+        request.url
+      )
+    )
   }
 
   const pathnameIsMissingLocale = locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
-  );
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  )
 
   if (pathnameIsMissingLocale) {
-
     return NextResponse.rewrite(
-      new URL(`/${fallbackLng}${pathname}`, request.url),
-    );
+      new URL(`/${fallbackLng}${pathname}`, request.url)
+    )
   }
 }
 
 export const config = {
-    matcher: '/((?!api|_next/static|_next/image|manifest.json|assets|favicon.ico|images|fonts|sitemap.xml|robots.txt).*)',
-};
+  matcher:
+    "/((?!api|_next/static|_next/image|manifest.json|assets|favicon.ico|images|fonts|sitemap.xml|robots.txt).*)",
+}
