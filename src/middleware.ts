@@ -1,18 +1,14 @@
 import { NextResponse, NextRequest } from "next/server"
 import { fallbackLng, locales } from "./app/i18n/settings"
-// import { getSession, useSession } from "next-auth/react"
+// import { getServerSession } from "next-auth/next"
 
 export async function middleware(request: NextRequest) {
-  // const session = await getSession({ req: request })
-  // const session = await getSession({ req: request })
-  // const { data: session } = useSession()
+  const pathname = request.nextUrl.pathname
+  // const session = await getServerSession(request)
 
   // if (!session) {
-  //   return NextResponse.redirect("/api/auth/signin")
+  //   return NextResponse.redirect("/login")
   // }
-
-  const pathname = request.nextUrl.pathname
-
   if (
     pathname.startsWith(`/${fallbackLng}/`) ||
     pathname === `/${fallbackLng}`

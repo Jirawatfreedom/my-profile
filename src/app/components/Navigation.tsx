@@ -123,7 +123,7 @@ const Navigation = () => {
                           }`}
                           href={`/${locale}/blogs`}
                         >
-                          Blogs
+                          {t("blogs")}
                         </a>
                         <a
                           className={`py-4 px-2 font-semibold hover:text-purple-500 transition duration-300 ${
