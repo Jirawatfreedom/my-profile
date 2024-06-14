@@ -1,4 +1,3 @@
-import Link from "next/link"
 import HeroSection from "../components/HeroSection"
 import { createTranslation } from "../i18n/server"
 import { LocaleType } from "../i18n/settings"
@@ -13,7 +12,6 @@ const IndexPage = async ({
     <div className="container">
       <HeroSection />
       <h1>Home</h1>
-      <Link href="/about">About</Link>
     </div>
   )
 }

@@ -6,14 +6,16 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    // domains: ['tailwindui.com'], // Add this line
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "localhost",
-        pathname: "**",
-      },
-    ],
+     remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'lh3.googleusercontent.com',
+          },
+          {
+            protocol: 'https',
+            hostname: 'avatars.githubusercontent.com',
+          },
+        ],
   },
 }
 
