@@ -60,6 +60,7 @@ const Navigation = () => {
                           alt="Logo"
                           fill
                           className="absolute w-full min-h-full object-cover object-center"
+                          priority
                         />
                       </div>
                       <span className=" text-[#16f2b3] text-3xl font-bold  bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient">
