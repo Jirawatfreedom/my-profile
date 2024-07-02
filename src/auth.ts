@@ -10,6 +10,7 @@ import { PrismaClient } from "@prisma/client"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
+import bcrypt from "bcrypt"
 const prisma = new PrismaClient()
 export const config = {
   adapter: PrismaAdapter(prisma),
@@ -25,17 +26,46 @@ export const config = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Username", type: "text" },
+        email: { label: "Email", type: "email", placeholder: "john@doe.com" },
         password: { label: "Password", type: "password" },
       },
-      authorize(credentials: any, req) {
-        return {
-          id: "1",
-          Email: credentials.email,
+      async authorize(credentials, req) {
+        if (!credentials) return null
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        })
+        if (
+          user &&
+          (await bcrypt.compare(credentials.password, user.password))
+        ) {
+          return {
+            id: user.id.toString(),
+            name: user.name,
+            email: user.email,
+          }
+        } else {
+          throw new Error("Invalid email or password")
         }
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.id = user.id
+      }
+      return token
+    },
+    session: async ({ session, token }) => {
+      if (session.user) {
+        session.user.id = token.id as string
+      }
+      return session
+    },
+  },
 } satisfies NextAuthOptions
 
 export function auth(
