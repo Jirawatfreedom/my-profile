@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET as string,
   })
   if (pathname.startsWith("/profile") && !user) {
-    return NextResponse.redirect(new URL("/login", request.url))
+    return NextResponse.redirect(new URL("/auth/signin", request.url))
   }
   if (pathname.startsWith("/protected") && (!user || user.role !== "admin")) {
     return NextResponse.redirect(new URL("/", request.url))

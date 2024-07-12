@@ -11,7 +11,7 @@ import { useParams, usePathname } from "next/navigation"
 import { LocaleTypes } from "../i18n/settings"
 import { useTranslation } from "../i18n/client"
 import ChangeLocale from "./ChangeLocale"
-import { NavigationType } from "types/navigation"
+import { NavigationType } from "@/app/types/navigation"
 import { signOut, useSession } from "next-auth/react"
 
 const Navigation = () => {
@@ -27,7 +27,7 @@ const Navigation = () => {
     { name: t("education"), href: "/education" },
     { name: t("blogs"), href: "/blogs" },
     { name: t("projects"), href: "/projects" },
-    { name: t("sign-in"), href: "/login" },
+    { name: t("sign-in"), href: "/auth/signin" },
   ]
   return (
     <header>

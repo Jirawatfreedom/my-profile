@@ -23,22 +23,11 @@ const LoginForm = () => {
   const { t: tError } = useTranslation(locale, "error")
 
   const router = useRouter()
-  // const [error, setError] = useState("")
   const [submitting, setSubmitting] = useState(false)
 
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl") ?? "/profile"
 
-  // const methods = useForm<LoginUserInput>({
-  //   resolver: zodResolver(loginUserSchema),
-  // })
-
-  // const {
-  //   reset,
-  //   handleSubmit,
-  //   register,
-  //   formState: { errors },
-  // } = methods
   const {
     register,
     handleSubmit,
