@@ -3,7 +3,6 @@ import { Inter, Roboto_Mono } from "next/font/google"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import SessionWrapper from "./components/SessionWrapper"
-// import "~react-toastify/dist/ReactToastify.min.css"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,24 +26,22 @@ export default function RootLayout({
   readonly children: React.ReactNode
 }) {
   return (
-    <SessionWrapper>
-      <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
-        <body suppressHydrationWarning={true}>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          {children}
-        </body>
-      </html>
-    </SessionWrapper>
+    <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
+      <body suppressHydrationWarning={true}>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <SessionWrapper>{children}</SessionWrapper>
+      </body>
+    </html>
   )
 }

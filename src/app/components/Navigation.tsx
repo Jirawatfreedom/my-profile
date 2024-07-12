@@ -11,17 +11,24 @@ import { useParams, usePathname } from "next/navigation"
 import { LocaleTypes } from "../i18n/settings"
 import { useTranslation } from "../i18n/client"
 import ChangeLocale from "./ChangeLocale"
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-]
+import { NavigationType } from "types/navigation"
+import { signOut, useSession } from "next-auth/react"
 
 const Navigation = () => {
   const pathName = usePathname()
   const locale = useParams()?.locale as LocaleTypes
   const { t } = useTranslation(locale, "common")
+  const { data: session, status } = useSession()
+  const isLoggedIn = status === "authenticated"
+  const navigation: NavigationType[] = [
+    { name: t("about"), href: "/about" },
+    { name: t("experiences"), href: "/experiences" },
+    { name: t("skills"), href: "/skills" },
+    { name: t("education"), href: "/education" },
+    { name: t("blogs"), href: "/blogs" },
+    { name: t("projects"), href: "/projects" },
+    { name: t("sign-in"), href: "/login" },
+  ]
   return (
     <header>
       <Disclosure
@@ -153,15 +160,51 @@ const Navigation = () => {
                     key={item.name}
                     href={item.href}
                     className={
-                      item.current
+                      item.href === pathName
                         ? "bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     }
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.href === pathName ? "page" : undefined}
                   >
                     {item.name}
                   </a>
                 ))}
+                <div className="flex flex-row justify-start pl-3 py-4">
+                  <div className="w-1/5">
+                    <ChangeLocale />
+                  </div>
+                </div>
+                <div className="flex flex-row justify-center py-2">
+                  <div className="flex flex-row justify-center w-full">
+                    {isLoggedIn && (
+                      <div className="flex flex-col justify-between items-center">
+                        <div>
+                          <div className="w-10 h-10 relative">
+                            <Image
+                              src={session?.user?.image as string}
+                              fill
+                              alt="user-image"
+                              className="object-cover rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-row items-center">
+                          <span className="inline-flex">
+                            {session?.user?.name as string}
+                          </span>
+                        </div>
+                        <div>
+                          <button
+                            className="bg-red-600 py-2 px-6 rounded-md"
+                            onClick={() => signOut()}
+                          >
+                            Sign out
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </DisclosurePanel>
           </div>

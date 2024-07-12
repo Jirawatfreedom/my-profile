@@ -1,4 +1,4 @@
-import Profile from "@/app/components/profile/Profile"
+import HeroSection from "@/app/components/HeroSection"
 import { createTranslation } from "@/app/i18n/server"
 
 const ProfilePage = async ({
@@ -12,8 +12,8 @@ const ProfilePage = async ({
   const { t } = await createTranslation(locale, "profile")
   return (
     <div className="container">
-      <h1>{t("aboutThisPage")}</h1>
-      <Profile />
+      <h1>{t("about-this-page")}</h1>
+      <HeroSection />
     </div>
   )
 }

@@ -1,14 +1,20 @@
 import { NextResponse, NextRequest } from "next/server"
 import { fallbackLng, locales } from "./app/i18n/settings"
-// import { getServerSession } from "next-auth/next"
+import { getToken } from "next-auth/jwt"
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
-  // const session = await getServerSession(request)
+  const user = await getToken({
+    req: request,
+    secret: process.env.NEXTAUTH_SECRET as string,
+  })
+  if (pathname.startsWith("/profile") && !user) {
+    return NextResponse.redirect(new URL("/login", request.url))
+  }
+  if (pathname.startsWith("/protected") && (!user || user.role !== "admin")) {
+    return NextResponse.redirect(new URL("/", request.url))
+  }
 
-  // if (!session) {
-  //   return NextResponse.redirect("/login")
-  // }
   if (
     pathname.startsWith(`/${fallbackLng}/`) ||
     pathname === `/${fallbackLng}`

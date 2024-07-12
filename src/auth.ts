@@ -3,7 +3,7 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from "next"
-import type { NextAuthOptions } from "next-auth"
+import type { NextAuthOptions, RequestInternal, User } from "next-auth"
 import { getServerSession } from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
@@ -24,27 +24,44 @@ export const config = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
+      id: "credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "john@doe.com" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        if (!credentials) return null
+      async authorize(
+        credentials: Record<"email" | "password", string> | undefined,
+        req: Pick<RequestInternal, "body" | "query" | "headers" | "method">
+      ): Promise<User | null> {
+        if (!credentials?.email || !credentials.password) {
+          return null
+        }
+
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: {
+            email: String(credentials.email),
+          },
         })
+
         if (
-          user &&
-          (await bcrypt.compare(credentials.password, user.password))
+          !user ||
+          !(await bcrypt.compare(String(credentials.password), user.password!))
         ) {
-          return {
-            id: user.id.toString(),
-            name: user.name,
-            email: user.email,
-          }
-        } else {
-          throw new Error("Invalid email or password")
+          return null
+        }
+        const defaultImagePath = "/images/default.png"
+        const image =
+          user.image && user.image.length > 0 ? user.image : defaultImagePath
+        return {
+          id: user.id,
+          email: user.email ?? undefined,
+          name: user.name,
+          image: image,
         }
       },
     }),
@@ -56,14 +73,21 @@ export const config = {
     jwt: async ({ token, user }) => {
       if (user) {
         token.id = user.id
+        token.role = user.role
+        token.image = user.image
       }
       return token
     },
-    session: async ({ session, token }) => {
-      if (session.user) {
-        session.user.id = token.id as string
+    session: async ({ session, user, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id as string,
+          randomKey: token.randomKey,
+          role: token.role,
+        },
       }
-      return session
     },
   },
 } satisfies NextAuthOptions

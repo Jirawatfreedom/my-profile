@@ -17,12 +17,16 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".", // Changed to '.' to resolve from project root
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
-      ] // Adjusted the path to 'src/*'
-    }
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

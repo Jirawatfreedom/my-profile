@@ -9,7 +9,7 @@ const AboutPage = async ({
 
   return (
     <div className="container">
-      <h1>{t("aboutThisPage")}</h1>
+      <h1>{t("about-this-page")}</h1>
     </div>
   )
 }
